@@ -20,7 +20,6 @@ app.use(bodyParser.json());
  */
 
 app.get('/words', (req, res) => {
-  console.log(req.body);
   var words = [];
   db.Word.find({}).then((data) => {
     for (var x = 0; x < data.length; x++) {
@@ -28,17 +27,26 @@ app.get('/words', (req, res) => {
       var wordObj = {word: data[x].word, definition: data[x].definition}
       // console.log(wordObj)
       words.push(wordObj)
-      console.log(words);
     }
+    console.log(words);
     res.send(words)
   })
 })
 
-app.post('/words', (req, res) => {
-  console.log(req.body.word);
+app.post('/wordSubmit', (req, res) => {
   var word = req.body.word;
   words.getWord(word)
   res.status(201).send('word received');
+})
+
+app.post('/wordCreate', (req, res) => {
+  var word = req.body
+  db.save(word);
+  res.send('received');
+})
+
+app.put('/words', (req, res) => {
+  console.log(req.body)
 })
 
 app.listen(process.env.PORT);

@@ -19,7 +19,7 @@ class Search extends React.Component {
   onClick = (e) => {
     e.preventDefault();
     console.log(this.state.entry);
-    axios.post('/words', {"word":this.state.entry})
+    axios.post('/wordSubmit', {"word":this.state.entry})
     .then(res => {
       console.log(res);
     })

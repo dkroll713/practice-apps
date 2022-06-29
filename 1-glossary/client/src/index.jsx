@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from 'react-dom';
-import Search from './components/Search.jsx'
-import Words from './components/Words.jsx'
+import Search from './components/Search.jsx';
+import Words from './components/Words.jsx';
+import Create from './components/Create.jsx';
 const axios = require('axios');
 
 class App extends React.Component {
@@ -32,11 +33,13 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <h1>Word Creation</h1>
+        <Create refresh={this.getWords}/>
         <h1>Word Lookup</h1>
         <Search refresh={this.getWords}/>
         <h2>Word List</h2>
         {this.state.words.map(word => {
-          return <Words className="entry" word={word.word} definition={word.definition} />
+          return <Words key={word.word} className="entry" word={word.word} definition={word.definition} />
         })}
       </div>
     )
