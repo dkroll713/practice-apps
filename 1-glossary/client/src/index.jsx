@@ -10,6 +10,7 @@ class App extends React.Component {
     this.state = {
       words: []
     }
+    this.getWords = this.getWords.bind(this);
   }
 
   getWords() {
@@ -32,7 +33,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Word Lookup</h1>
-        <Search />
+        <Search refresh={this.getWords}/>
         <h2>Word List</h2>
         {this.state.words.map(word => {
           return <Words className="entry" word={word.word} definition={word.definition} />

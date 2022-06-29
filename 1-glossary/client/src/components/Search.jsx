@@ -26,6 +26,7 @@ class Search extends React.Component {
     .catch(err => {
       console.log(err);
     })
+    setTimeout(this.props.refresh, 500)
   }
 
   render() {
