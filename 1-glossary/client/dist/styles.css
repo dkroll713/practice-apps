@@ -82,3 +82,8 @@ main {
   display: flex;
   justify-content: center;
 }
+
+.searches {
+  display: flex;
+  justify-content: space-between;
+}

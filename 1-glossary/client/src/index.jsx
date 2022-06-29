@@ -3,15 +3,19 @@ import ReactDOM from 'react-dom';
 import Search from './components/Search.jsx';
 import Words from './components/Words.jsx';
 import Create from './components/Create.jsx';
+import Grep from './components/Grep.jsx';
 const axios = require('axios');
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      words: []
+      words: [],
+      display: false,
+      results = [],
     }
     this.getWords = this.getWords.bind(this);
+    this.grep = this.grep.bind(this);
   }
 
   getWords() {
@@ -30,13 +34,29 @@ class App extends React.Component {
     this.getWords()
   }
 
+  grep = term => {
+    var words = this.state.words;
+    var newWords = [];
+    for (var x = 0; x < words.length; x++) {
+      if (words[x].word.includes(term) || words[x].definition.includes(term)) {
+        newWords.push(words[x]);
+      }
+    }
+    this.setState({
+      words: newWords
+    })
+  }
+
   render() {
     return (
       <div>
         <h1>Word Creation</h1>
         <Create refresh={this.getWords}/>
         <h1>Word Lookup</h1>
-        <Search refresh={this.getWords}/>
+        <div className="searches">
+          <Search refresh={this.getWords}/>
+          <Grep grep={this.grep} />
+        </div>
         <h2>Word List</h2>
         {this.state.words.map(word => {
           return <Words key={word.word}
