@@ -39,7 +39,11 @@ class App extends React.Component {
         <Search refresh={this.getWords}/>
         <h2>Word List</h2>
         {this.state.words.map(word => {
-          return <Words key={word.word} className="entry" word={word.word} definition={word.definition} />
+          return <Words key={word.word}
+          className="entry"
+          word={word.word}
+          definition={word.definition}
+          refresh={this.getWords} />
         })}
       </div>
     )

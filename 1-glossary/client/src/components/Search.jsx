@@ -18,7 +18,6 @@ class Search extends React.Component {
 
   onClick = (e) => {
     e.preventDefault();
-    console.log(this.state.entry);
     axios.post('/wordSubmit', {"word":this.state.entry})
     .then(res => {
       console.log(res);
@@ -26,7 +25,7 @@ class Search extends React.Component {
     .catch(err => {
       console.log(err);
     })
-    setTimeout(this.props.refresh, 500)
+    setTimeout(this.props.refresh, 250)
   }
 
   render() {

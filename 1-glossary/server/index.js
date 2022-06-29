@@ -45,8 +45,20 @@ app.post('/wordCreate', (req, res) => {
   res.send('received');
 })
 
+app.post('/deleteWords', (req, res) => {
+  var word = req.body
+  db.delete(word)
+  res.send('deleted');
+})
+
 app.put('/words', (req, res) => {
-  console.log(req.body)
+  var word = req.body;
+  console.log('before update:', word)
+  db.edit(word)
+  .then(() => {
+    console.log(word)
+  })
+  res.send('put received');
 })
 
 app.listen(process.env.PORT);
