@@ -12,7 +12,7 @@ class App extends React.Component {
     this.state = {
       words: [],
       display: false,
-      results = [],
+      results: [],
     }
     this.getWords = this.getWords.bind(this);
     this.grep = this.grep.bind(this);
