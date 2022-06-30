@@ -11,7 +11,7 @@ class PageTwo extends React.Component {
     return (
       <div>
         <h2 style={{display: 'flex', justifyContent: 'center'}}>
-          Page Two
+          Page Two - Shipping and Billing Address
         </h2>
         <div className="buttons">
           <button onClick={this.props.goBack}>Go Back</button>

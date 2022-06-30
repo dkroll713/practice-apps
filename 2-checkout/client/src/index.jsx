@@ -5,6 +5,7 @@ import Checkout from './components/Checkout.jsx';
 import PageOne from './components/PageOne.jsx';
 import PageTwo from './components/PageTwo.jsx';
 import PageThree from './components/PageThree.jsx';
+import Confirm from './components/Confirm.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -62,6 +63,10 @@ class App extends React.Component {
       this.setState({
         page: 'pageTwo',
       })
+    } else if (this.state.page === 'confirm') {
+      this.setState({
+        page: 'pageThree'
+      })
     }
   }
 
@@ -78,34 +83,38 @@ class App extends React.Component {
       this.setState({
         page: 'pageThree',
       })
+    } else if (this.state.page === 'pageThree') {
+      this.setState({
+        page: 'confirm'
+      })
     }
   }
 
-  handleName = (e) => {
+  handleName = e => {
     this.setState({
       name: e.target.value,
     })
   }
 
-  handleEmail = (e) => {
+  handleEmail = e => {
     this.setState({
       email: e.target.value,
     })
   }
 
-  handlePassword = (e) => {
+  handlePassword = e => {
     this.setState({
       password: e.target.value
     })
   }
 
-  handleAddr1 = (e) => {
+  handleAddr1 = e => {
     this.setState({
       address1: e.target.value,
     })
   }
 
-  handleAddr2 = (e) => {
+  handleAddr2 = e => {
     this.setState({
       address2: e.target.value,
     })
@@ -208,10 +217,29 @@ class App extends React.Component {
         handleCVV={this.handleCVV}
         handleBzip={this.handleBzip}
 
-        cc={this.props.cc}
-        exp={this.props.exp}
-        cvv={this.props.cvv}
-        bzip={this.props.bzip}/>
+        cc={this.state.cc}
+        exp={this.state.exp}
+        cvv={this.state.cvv}
+        bzip={this.state.bzip}/>
+      )
+    } else if (this.state.page === 'confirm') {
+      return (
+        <Confirm
+        goBack={this.goBack}
+
+        name={this.state.name}
+        email={this.state.email}
+        password={this.state.password}
+        address1={this.state.address1}
+        address2={this.state.address2}
+        city={this.state.city}
+        state={this.state.state}
+        zip={this.state.zip}
+        phone={this.state.phone}
+        cc={this.state.cc}
+        exp={this.state.exp}
+        cvv={this.state.cvv}
+        bzip={this.state.bzip}/>
       )
     }
   }

@@ -11,7 +11,7 @@ class Checkout extends React.Component {
 
   render() {
     return (
-      <button onClick={this.onClick}>Check Out</button>
+      <button onClick={this.onClick}>Press to check out</button>
     )
   }
 }

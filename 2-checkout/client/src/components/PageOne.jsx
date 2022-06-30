@@ -16,7 +16,7 @@ class PageOne extends React.Component {
     return (
       <div>
         <h2 style={{display: 'flex', justifyContent: 'center'}}>
-          Page One
+          Page One - Account Details
         </h2>
         <div className="buttons">
           <button onClick={this.props.goBack}>Go Back</button>
