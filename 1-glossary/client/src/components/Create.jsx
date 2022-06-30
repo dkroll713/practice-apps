@@ -29,7 +29,7 @@ class Create extends React.Component {
     var word = {"word": this.state.word, "definition": this.state.definition}
     console.log(word);
     axios.post('/wordCreate', word)
-    setTimeout(this.props.refresh, 100)
+    setTimeout(this.props.refresh, 250)
   }
 
   render() {

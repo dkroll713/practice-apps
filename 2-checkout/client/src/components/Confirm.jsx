@@ -1,8 +1,17 @@
 import React from 'react';
+const axios = require('axios');
 
 class Confirm extends React.Component {
   constructor(props) {
     super(props);
+    this.onClick = this.onClick;
+  }
+
+  onClick = e => {
+    axios.post('/checkout', {data: this.props})
+    .then(response => {
+      console.log(response);
+    })
   }
 
   render() {
@@ -38,7 +47,7 @@ class Confirm extends React.Component {
             <p>Billing Zip: {this.props.bzip}</p>
           </div>
         </div>
-        <button>Confirm Order and Purchase</button>
+        <button onClick={this.onClick}>Confirm Order and Purchase</button>
       </div>
     )
   }
