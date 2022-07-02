@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require("path");
 const sessionHandler = require("./middleware/session-handler");
 const logger = require("./middleware/logger");
+const models = require('./models/users')
 
 // Establishes connection to the database on server start
 const db = require("./db");
@@ -29,7 +30,14 @@ app.use(bodyParser.json())
  *
  */
 app.post('/checkout', (req, res) => {
-  console.log(req.body)
+  var cookie = req.headers.cookie;
+  var data = req.body.data;
+  // console.log('cookie:', req.headers.cookie)
+  // console.log(req.body.data)
+  data.cookie = cookie;
+  models.checkSession(cookie, data)
+  // models.saveInfo(data);
+
   res.send('ok')
 })
 

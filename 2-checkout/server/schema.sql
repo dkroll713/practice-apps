@@ -40,22 +40,24 @@ USE checkout;
  *    mysql -u root < server/schema.sql
  *  to create the database and the tables.*/
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `users`;
 
-CREATE TABLE `user` (
-  `id` INTEGER NOT NULL AUTO_INCREMENT COMMENT 'the user id',
+CREATE TABLE `users` (
+  `session_id` VARCHAR(255) NOT NULL COMMENT 'the user id',
   `name` VARCHAR(255) NOT NULL COMMENT 'the users full name',
   `email` VARCHAR(255) NOT NULL COMMENT 'the users email',
   `password` VARCHAR(255) NOT NULL COMMENT 'the users password',
-  `addressOne` VARCHAR(255) NOT NULL COMMENT 'first line of address',
-  `addressTwo` VARCHAR(255) NOT NULL COMMENT 'second line of address',
+  `address` VARCHAR(255) NOT NULL COMMENT 'first line of address',
   `city` VARCHAR(255) NOT NULL COMMENT 'city',
   `state` VARCHAR(255) NOT NULL,
   `zip` VARCHAR(255) NOT NULL,
   `phone` VARCHAR(255) NOT NULL,
-  `id_billing` INTEGER NOT NULL,
+  `cc` VARCHAR(255) NOT NULL,
+  `exp` VARCHAR(255) NOT NULL,
+  `cvv` VARCHAR(255) NOT NULL,
+  `bzip` VARCHAR(255) NOT NULL,
 
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`session_id`)
 ) COMMENT 'contains all users who check out';
 
 -- ---
@@ -65,20 +67,12 @@ CREATE TABLE `user` (
 
 DROP TABLE IF EXISTS `billing`;
 
-CREATE TABLE `billing` (
-  `id` INTEGER NOT NULL AUTO_INCREMENT COMMENT 'the user id',
-  `cc` VARCHAR(255) NOT NULL,
-  `exp` VARCHAR(255) NOT NULL,
-  `cvv` VARCHAR(255) NOT NULL,
-  `bzip` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) COMMENT 'holds each users billing info';
-
+DROP TABLE IF EXISTS `sessions`;
 -- ---
 -- Foreign Keys
 -- ---
 
-ALTER TABLE `user` ADD FOREIGN KEY (id_billing) REFERENCES `billing` (`id`);
+-- ALTER TABLE `user` ADD FOREIGN KEY (id_billing) REFERENCES `billing` (`id`);
 
 -- ---
 -- Table Properties
